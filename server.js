@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
 server.use(cors());
+server.use(express.json());
 const PORT = process.env.PORT;
 const MONGO_SERVER = process.env.MONGO_SERVER;
 // const  seedBook  = require('./Models/Book.Model');

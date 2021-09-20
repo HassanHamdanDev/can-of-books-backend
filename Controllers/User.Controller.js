@@ -3,7 +3,7 @@
 const  userModel  = require('../Models/User.Modal');
 
 let usersController = (req, res) => {
-    userModel.find().then(data => {
+    userModel.find({}).then(data => {
         res.json(data)
     });
 };
