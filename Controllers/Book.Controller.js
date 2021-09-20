@@ -1,6 +1,6 @@
 'use strict';
 
-const { bookModel } = require('../Models/Book.Model');
+const  bookModel  = require('../Models/Book.Model');
 
 let booksController = (req, res) => {
     bookModel.find().then(data => {

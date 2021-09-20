@@ -1,6 +1,6 @@
 'use strict';
 
-const { userModel } = require('../Models/User.Modal');
+const  userModel  = require('../Models/User.Modal');
 
 let usersController = (req, res) => {
     userModel.find().then(data => {
