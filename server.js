@@ -1,18 +1,30 @@
 'use strict';
 
-require('dotenv').config();
 const express = require('express');
+const server = express();
+const mongoose = require('mongoose');
+require('dotenv').config();
 const cors = require('cors');
-
-const app = express();
-app.use(cors());
-
+server.use(cors());
 const PORT = process.env.PORT;
+const MONGO_SERVER = process.env.MONGO_SERVER;
+const { seedBook } = require('./Models/Book.Model');
+const { seedUser } = require('./Models/User.Modal');
+const { usersController } = require('./Controllers/User.Controller');
+const { booksController } = require('./Controllers/Book.Controller');
 
-app.get('/test', (request, response) => {
 
-  response.send('test request received')
+mongoose.connect(`${MONGO_SERVER}/CanBooksDB`, { useNewUrlParser: true, useUnifiedTopology: true });
 
-})
+server.get('/seed-data', (request, response) => {
+  seedBook();
+  seedUser();
+  response.json({
+    "massage": "seed created"
+  });
+});
 
-app.listen(PORT, () => console.log(`listening on ${PORT}`));
+server.get('/users', usersController);
+server.get('/books', booksController);
+
+server.listen(PORT, () => console.log(`listening on ${PORT}`));
