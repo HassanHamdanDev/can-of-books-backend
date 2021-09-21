@@ -12,12 +12,14 @@ let seedBook = () => {
             title: "Notes From the Bathroom",
             description: "A collection of never-before-seen humor pieces—essays, satire, short stories, poetry, cartoons, artwork",
             status: "avalibale",
+            email: "hassanhamdande@2gmail.com"
         });
     let secondBook = new bookModel(
         {
             title: "I Am Not a Wolf",
             description: "You are a HUMAN MAN navigating every day life, dating, bus etiquette, and other important human concerns. You are definitely NOT A WOLF. ",
             status: "avalibale",
+            email: "hassanhamdande@2gmail.com"
         }
     );
     let thirdBook = new bookModel(
@@ -25,6 +27,7 @@ let seedBook = () => {
             title: "Yearbook",
             description: "A collection of funny personal essays from one of the writers of Superbad and Pineapple Express and one of the producers of The Disaster Artist, Neighbors, and The Boys.",
             status: "avalibale",
+            email: "hassanhamdande@2gmail.com"
         }
     );
     fistBook.save();
@@ -32,4 +35,4 @@ let seedBook = () => {
     thirdBook.save();
 };
 
-module.exports = bookModel;
+module.exports = { bookModel, seedBook };
