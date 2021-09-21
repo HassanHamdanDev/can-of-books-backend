@@ -16,7 +16,7 @@ let getBookController = (req, res) => {
     });
 };
 
-let createBookController = (req, res) => {
+let createBookController = async (req, res) => {
     let { title, description, status, email } = req.body;
     let addBook = new bookModel({
         title: title,
@@ -25,7 +25,8 @@ let createBookController = (req, res) => {
         email: email
     });
     addBook.save();
-    res.status(201).json(addBook);
+    let booksData = await bookModel.find({});
+    res.status(201).json(booksData);
 };
 
 const removeBookController = (req, res) => {
