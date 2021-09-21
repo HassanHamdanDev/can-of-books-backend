@@ -9,23 +9,20 @@ server.use(cors());
 server.use(express.json());
 const PORT = process.env.PORT;
 const MONGO_SERVER = process.env.MONGO_SERVER;
-// const  seedBook  = require('./Models/Book.Model');
-// const  seedUser  = require('./Models/User.Modal');
-const usersController = require('./Controllers/User.Controller');
-const booksController = require('./Controllers/Book.Controller');
-
+const { seedBook } = require('./Models/Book.Model');
+const { booksController, createBookController, removeBookController } = require('./Controllers/Book.Controller');
 
 mongoose.connect(`${MONGO_SERVER}/CanBooksDB`, { useNewUrlParser: true, useUnifiedTopology: true });
 
-// server.get('/seed-data', (request, response) => {
-//   seedBook();
-//   seedUser();
-//   response.json({
-//     "massage": "seed created"
-//   });
-// });
+server.get('/seed-data', (request, response) => {
+  seedBook();
+  response.json({
+    "massage": "seed created"
+  });
+});
 
-server.get('/users', usersController);
 server.get('/books', booksController);
+server.post('/books', createBookController);
+server.delete('/books/:id', removeBookController);
 
 server.listen(PORT, () => console.log(`listening on ${PORT}`));
